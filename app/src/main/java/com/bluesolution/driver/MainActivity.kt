@@ -2,7 +2,11 @@ package com.bluesolution.driver
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.PointerIconCompat
+import com.mapbox.api.directions.v5.DirectionsCriteria
+import com.mapbox.api.directions.v5.MapboxDirections
 import com.mapbox.api.directions.v5.models.DirectionsRoute
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.ui.NavigationViewOptions
@@ -16,13 +20,22 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
     private lateinit var navigationMapboxMap: NavigationMapboxMap
     private lateinit var mapboxNavigation: MapboxNavigation
     private val route by lazy { getDirectionsRoute() }
-
+    private lateinit var origin: Point
+    private lateinit var destination: Point
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(applicationContext, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_main)
         navigationView.onCreate(savedInstanceState)
         navigationView.initialize(this)
+
+        val client = MapboxDirections.builder()
+            .origin(origin)
+            .destination(destination)
+            .overview(DirectionsCriteria.OVERVIEW_FULL)
+            .profile(DirectionsCriteria.PROFILE_DRIVING)
+            .accessToken(getString(R.string.mapbox_access_token))
+            .build()
     }
 
     override fun onLowMemory() {
