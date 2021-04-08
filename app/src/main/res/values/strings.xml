@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Driver</string>
     <string name="mapbox_access_token">pk.eyJ1IjoianVuaWVsZ2FyY2lhMDMiLCJhIjoiY2ttcnVtdWlzMGI5YzJ3czlocW1tZXFxeiJ9.e4np9m8cz0H4zFtDVv5MXw</string>
-
+    <string name="directions_activity_toast_message">Route is %1$f meters long.</string>
 </resources>
