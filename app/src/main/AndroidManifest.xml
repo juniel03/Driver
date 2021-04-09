@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bluesolution.driver">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -10,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Driver">
+        <activity android:name=".ui.user.User"></activity>
+        <activity android:name=".ui.Menu.Menu" />
         <activity android:name=".ui.directions.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,4 +21,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

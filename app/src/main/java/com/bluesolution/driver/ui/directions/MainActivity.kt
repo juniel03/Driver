@@ -10,8 +10,11 @@ import com.bluesolution.driver.databinding.ActivityMainBinding
 import com.mapbox.api.directions.v5.DirectionsCriteria
 import com.mapbox.api.directions.v5.MapboxDirections
 import com.mapbox.api.directions.v5.models.DirectionsResponse
+import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.camera.CameraUpdate
+import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.navigation.base.options.NavigationOptions
 import com.mapbox.navigation.base.trip.model.RouteLegProgress
 import com.mapbox.navigation.base.trip.model.RouteProgress
@@ -20,6 +23,10 @@ import com.mapbox.navigation.core.arrival.ArrivalObserver
 import com.mapbox.navigation.core.trip.session.LocationObserver
 import com.mapbox.navigation.ui.NavigationViewOptions
 import com.mapbox.navigation.ui.OnNavigationReadyCallback
+import com.mapbox.navigation.ui.camera.Camera
+import com.mapbox.navigation.ui.camera.DynamicCamera
+import com.mapbox.navigation.ui.camera.NavigationCameraUpdate
+import com.mapbox.navigation.ui.camera.RouteInformation
 import com.mapbox.navigation.ui.listeners.NavigationListener
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
 import retrofit2.Call
@@ -31,6 +38,7 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
     private lateinit var binding: ActivityMainBinding
     private lateinit var navigationMapboxMap: NavigationMapboxMap
     private lateinit var mapboxNavigation: MapboxNavigation
+    private lateinit var route: DirectionsRoute
     private lateinit var origin: Point
     private lateinit var waypoint: Point
     private lateinit var destination: Point
@@ -42,11 +50,22 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        origin = Point.fromLngLat(120.57948446661682, 15.174996337080662)
-        waypoint = Point.fromLngLat(120.56714005197385, 15.1679901800353)
+        origin = Point.fromLngLat(120.53376974852144, 15.175695148344897)
+        waypoint = Point.fromLngLat(120.53013067050756, 15.176981074967449)
         destination = Point.fromLngLat(120.52077627959572, 15.177812805063475)
         binding.navigationView.onCreate(savedInstanceState)
         binding.navigationView.initialize(this)
+        binding.startTrip.setOnClickListener {
+            val optionsBuilder = NavigationViewOptions.builder(this@MainActivity)
+            optionsBuilder.navigationListener(this@MainActivity)
+            optionsBuilder.directionsRoute(route)
+            optionsBuilder.locationObserver(locationObserver)
+            optionsBuilder.arrivalObserver(arrivalObserver)
+            optionsBuilder.camera(MyCamera(navigationMapboxMap.retrieveMap()))
+            optionsBuilder.shouldSimulateRoute(true)
+            binding.navigationView.startNavigation(optionsBuilder.build())
+
+        }
     }
     private val locationObserver = object : LocationObserver{
         override fun onEnhancedLocationChanged(enhancedLocation: Location, keyPoints: List<Location>) {
@@ -90,15 +109,8 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
                 // Get the directions route
                 val response = response
                 val currentRoute = response.body()!!.routes()[0]
-                Log.d(TAG, "current route: $currentRoute")
-                val optionsBuilder = NavigationViewOptions.builder(this@MainActivity)
-                optionsBuilder.navigationListener(this@MainActivity)
-                optionsBuilder.directionsRoute(currentRoute)
-                optionsBuilder.locationObserver(locationObserver)
-                optionsBuilder.arrivalObserver(arrivalObserver)
-                optionsBuilder.shouldSimulateRoute(true)
-                binding.navigationView.startNavigation(optionsBuilder.build())
-                navigationMapboxMap.startCamera(currentRoute)
+                route = currentRoute
+                Log.d(TAG, "route geometry: ${route.geometry()?.length}")
             }
             override fun onFailure(call: Call<DirectionsResponse>, throwable: Throwable) {
                 Log.e(TAG,"Error: " + throwable.message)
@@ -114,6 +126,14 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
         }
         navigationMapboxMap = binding.navigationView.retrieveNavigationMapboxMap()!!
         getRoute(origin, waypoint, destination)
+    }
+    class MyCamera(mapboxMap: MapboxMap) : DynamicCamera(mapboxMap){
+        override fun zoom(routeInformation: RouteInformation): Double {
+            return Math.max(super.zoom(routeInformation), MIN_ZOOM)
+        }
+        companion object {
+            val MIN_ZOOM = 15.0
+        }
     }
 
     override fun onNavigationFinished() {
