@@ -7,21 +7,47 @@
     tools:context=".ui.directions.MainActivity">
 
     <Button
-        android:id="@+id/startTrip"
+        android:id="@+id/start"
+        android:text="Start"
+        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Trip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/acceptOrder" />
+    <Button
+        android:id="@+id/deliver"
+        android:text="Deliver"
+        android:enabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/start" />
+    <Button
+        android:id="@+id/acceptOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accept Order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/orders"
+        android:enabled="false"/>
+    <TextView
+        android:id="@+id/orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO ORDERS"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.mapbox.navigation.ui.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTrip" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/deliver"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

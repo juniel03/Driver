@@ -7,7 +7,7 @@
     tools:context=".ui.Menu.Menu">
 
     <Button
-        android:id="@+id/Driver"
+        android:id="@+id/driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Driver"
@@ -21,5 +21,5 @@
         android:layout_height="wrap_content"
         android:text="User"
         android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@+id/Driver"/>
+        app:layout_constraintTop_toBottomOf="@+id/driver"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
