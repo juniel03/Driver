@@ -15,6 +15,10 @@ class MainActivityViewModel : ViewModel() {
     private val db = FirebaseDatabase.getInstance()
     var data: MutableLiveData<Order> = MutableLiveData()
 
+    fun delete(){
+        db.getReference("order").removeValue()
+    }
+
     fun accept (accepted: Boolean){
         db.getReference("order").child("accepted").setValue(accepted)
     }

@@ -17,8 +17,8 @@ class UserViewModel: ViewModel() {
     var isDelivered: MutableLiveData<Boolean> = MutableLiveData()
     var driverCoord: MutableLiveData<Coordinates> = MutableLiveData()
 
-    fun order (firebaseData: DatabaseReference, order: Order){
-        firebaseData.child("order").setValue(order)
+    fun order (order: Order){
+        db.getReference().child("order").setValue(order)
     }
     fun getPickedUpStatus(): LiveData<Boolean>{
         db.getReference().child("order").child("orderPickedUp").addValueEventListener(object : ValueEventListener {

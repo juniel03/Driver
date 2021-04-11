@@ -38,14 +38,12 @@ class User : AppCompatActivity(), OnMapReadyCallback {
 
 
     private lateinit var binding: ActivityUserBinding
-    private lateinit var symbolManager: SymbolManager
     private var markerDriver: Marker? = null
     private var markerUser: Marker? = null
 
     private val viewModel: UserViewModel by viewModels()
     private lateinit var reference: DatabaseReference
     private var mapboxMap: MapboxMap? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +57,7 @@ class User : AppCompatActivity(), OnMapReadyCallback {
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync (this)
         binding.order.setOnClickListener {
-            viewModel.order(reference, Order(false,
+            viewModel.order(Order(false,
                     false,
                     "n/a",
                     false,

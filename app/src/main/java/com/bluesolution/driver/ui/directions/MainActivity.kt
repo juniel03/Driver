@@ -293,6 +293,7 @@ class MainActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationL
 
     override fun onDestroy() {
         binding.navigationView.onDestroy()
+        viewModel.delete()
         super.onDestroy()
     }
 
