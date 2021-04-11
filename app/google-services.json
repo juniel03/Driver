@@ -1,0 +1,139 @@
+{
+  "project_info": {
+    "project_number": "651732629180",
+    "firebase_url": "https://coherent-vertex-308802-default-rtdb.firebaseio.com",
+    "project_id": "coherent-vertex-308802",
+    "storage_bucket": "coherent-vertex-308802.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651732629180:android:0b920bc6821aa4614942b9",
+        "android_client_info": {
+          "package_name": "com.bluesolution.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsANvKbQeIDb9isSpKeYpq11mbbyRP24M"
+        },
+        {
+          "current_key": "AIzaSyAReUjeXipR1bImqnY0Y2HvmDir48RtcKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651732629180:android:ea48242c323b399f4942b9",
+        "android_client_info": {
+          "package_name": "com.bluesolution.firebasemvvm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsANvKbQeIDb9isSpKeYpq11mbbyRP24M"
+        },
+        {
+          "current_key": "AIzaSyAReUjeXipR1bImqnY0Y2HvmDir48RtcKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651732629180:android:c10a9f4d5d2422314942b9",
+        "android_client_info": {
+          "package_name": "com.example.driversample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsANvKbQeIDb9isSpKeYpq11mbbyRP24M"
+        },
+        {
+          "current_key": "AIzaSyAReUjeXipR1bImqnY0Y2HvmDir48RtcKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651732629180:android:1273a70d59adcddc4942b9",
+        "android_client_info": {
+          "package_name": "letsbee.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsANvKbQeIDb9isSpKeYpq11mbbyRP24M"
+        },
+        {
+          "current_key": "AIzaSyAReUjeXipR1bImqnY0Y2HvmDir48RtcKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651732629180-2oo8uvp7qpka4h9146cs25vottm852gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
