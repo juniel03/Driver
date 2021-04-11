@@ -39,7 +39,9 @@ class User : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityUserBinding
     private lateinit var symbolManager: SymbolManager
-    private var marker: Marker? = null
+    private var markerDriver: Marker? = null
+    private var markerUser: Marker? = null
+
     private val viewModel: UserViewModel by viewModels()
     private lateinit var reference: DatabaseReference
     private var mapboxMap: MapboxMap? = null
@@ -50,6 +52,9 @@ class User : AppCompatActivity(), OnMapReadyCallback {
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val actionBar = supportActionBar
+        actionBar!!.title = "User"
+
         reference = FirebaseDatabase.getInstance().reference
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync (this)
@@ -69,7 +74,7 @@ class User : AppCompatActivity(), OnMapReadyCallback {
                     binding.status.text = "Your Rider has picked up your order and is on the way!"
                     viewModel.getDriverCoord().observe(this, Observer {
                         Log.d("tag", "Coordinates: ${it.latitude} , ${it.longitude}")
-                        marker!!.moveMarkerSmoothly(LatLng(it.latitude, it.longitude), true)
+                        markerDriver!!.moveMarkerSmoothly(LatLng(it.latitude, it.longitude), true)
                         var cameraPosition = CameraPosition.Builder()
                                 .target(LatLng(it.latitude, it.longitude))
                                 .zoom(16.0)
@@ -91,7 +96,7 @@ class User : AppCompatActivity(), OnMapReadyCallback {
                                 .setIcon(R.drawable.ic_car, true)
                                 .setPosition(latLng = LatLng(coordinates[0].latitude(), coordinates[0].longitude()))
                                 .build(this@User)
-                        marker = mapboxMap?.addMarker(markerOption)
+                        markerDriver = mapboxMap?.addMarker(markerOption)
 
                         val points1: ArrayList<LatLng> = ArrayList()
                         for (coordinates in coordinates) {
@@ -172,7 +177,7 @@ class User : AppCompatActivity(), OnMapReadyCallback {
                     .setIcon(R.drawable.mapbox_marker_icon_default, true)
                     .setPosition(latLng = LatLng(15.177812805063475,120.52077627959572))
                     .build(this@User)
-            marker = mapboxMap.addMarker(markerOption)
+            markerUser = mapboxMap.addMarker(markerOption)
         }
     }
 

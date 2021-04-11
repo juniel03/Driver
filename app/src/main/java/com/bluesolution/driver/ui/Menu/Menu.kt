@@ -18,7 +18,8 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val actionBar = supportActionBar
+        actionBar!!.title = "Menu"
         binding.driver.setOnClickListener {
             startActivity(Intent(this@Menu, MainActivity::class.java))
         }
